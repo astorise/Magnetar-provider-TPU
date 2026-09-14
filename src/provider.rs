@@ -36,9 +36,7 @@
 use magnetar_runtime::affinity::ProviderHealth;
 use magnetar_runtime::provider::{Provider, ProviderError, ProviderMetadata, ProviderRegistry};
 
-use crate::edgetpu_sys::{
-    EDGETPU_LIBRARY_CANDIDATES, EdgetpuFreeDevicesFn, EdgetpuListDevicesFn,
-};
+use crate::edgetpu_sys::{EDGETPU_LIBRARY_CANDIDATES, EdgetpuFreeDevicesFn, EdgetpuListDevicesFn};
 
 const TPU_PROVIDER_NAME: &str = "tpu";
 const TPU_PROVIDER_VERSION: &str = env!("CARGO_PKG_VERSION");

@@ -54,8 +54,7 @@ pub struct EdgetpuDevice {
 /// result when no device is attached); must be freed via
 /// `edgetpu_free_devices`, which this baseline's discovery path does
 /// immediately after reading the count.
-pub type EdgetpuListDevicesFn =
-    unsafe extern "C" fn(num_devices: *mut usize) -> *mut EdgetpuDevice;
+pub type EdgetpuListDevicesFn = unsafe extern "C" fn(num_devices: *mut usize) -> *mut EdgetpuDevice;
 
 /// `void edgetpu_free_devices(struct edgetpu_device* dev)`.
 pub type EdgetpuFreeDevicesFn = unsafe extern "C" fn(dev: *mut EdgetpuDevice);
