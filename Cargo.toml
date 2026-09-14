@@ -1,0 +1,26 @@
+[workspace]
+
+[package]
+name = "magnetar-provider-tpu"
+version = "0.1.0"
+edition = "2024"
+# Never published to crates.io independently -- this crate is only
+# buildable from within a checkout of the parent Magnetar repository,
+# matching every other externalized module's own Cargo.toml.
+publish = false
+
+[dependencies]
+# Path dependency, not a published crate: this crate is only buildable
+# from within a checkout of the parent Magnetar repository, with this
+# submodule checked out at `providers/tpu`.
+magnetar-runtime = { path = "../../magnetar-runtime" }
+# Dynamically loads the real Google Coral Edge TPU runtime shared library
+# at runtime (`edgetpu.dll`/`libedgetpu.so.1`/`libedgetpu.1.dylib`) instead
+# of linking against it at build time -- the same dynamic-loading posture
+# `providers/rocm`/`providers/npu`'s own `libloading` use already
+# establishes, so this crate keeps building and testing on a machine or CI
+# runner with no Edge TPU runtime installed at all (every machine/runner
+# this repository currently has). "TPU" here means the real, purchasable
+# local Coral Edge TPU accelerator (USB/PCIe) -- not Google Cloud TPU,
+# which is a cloud service with no local device to discover.
+libloading = "0.8"
