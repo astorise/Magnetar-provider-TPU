@@ -4,16 +4,18 @@
 name = "magnetar-provider-tpu"
 version = "0.1.0"
 edition = "2024"
-# Never published to crates.io independently -- this crate is only
-# buildable from within a checkout of the parent Magnetar repository,
-# matching every other externalized module's own Cargo.toml.
-publish = false
+license = "MIT"
+description = "TPU Provider for the Magnetar inference runtime."
+repository = "https://github.com/astorise/Magnetar-provider-TPU"
+readme = "README.md"
+keywords = ["ai", "inference", "magnetar"]
+categories = ["science", "hardware-support"]
+rust-version = "1.98"
 
 [dependencies]
-# Path dependency, not a published crate: this crate is only buildable
-# from within a checkout of the parent Magnetar repository, with this
-# submodule checked out at `providers/tpu`.
-magnetar-runtime = { path = "../../magnetar-runtime" }
+# `path` resolves inside a checkout of the parent Magnetar repository;
+# `version` is what `cargo publish` records for crates.io consumers.
+magnetar-runtime = { version = "0.1.0", path = "../../magnetar-runtime" }
 # Dynamically loads the real Google Coral Edge TPU runtime shared library
 # at runtime (`edgetpu.dll`/`libedgetpu.so.1`/`libedgetpu.1.dylib`) instead
 # of linking against it at build time -- the same dynamic-loading posture
