@@ -23,4 +23,4 @@ magnetar-runtime = { path = "../../magnetar-runtime" }
 # this repository currently has). "TPU" here means the real, purchasable
 # local Coral Edge TPU accelerator (USB/PCIe) -- not Google Cloud TPU,
 # which is a cloud service with no local device to discover.
-libloading = "0.8"
+libloading = "0.9"
