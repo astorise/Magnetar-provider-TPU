@@ -82,7 +82,7 @@ impl TpuProvider {
     fn discover_device_count() -> Option<usize> {
         let library = EDGETPU_LIBRARY_CANDIDATES
             .iter()
-            .find_map(|name| unsafe { libloading::Library::new(name).ok() })?;
+            .find_map(|name| unsafe { libloading::Library::new(*name).ok() })?;
 
         // SAFETY: `edgetpu_list_devices`/`edgetpu_free_devices` are real,
         // stable, publicly documented Edge TPU C API entry points
