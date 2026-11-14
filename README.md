@@ -59,7 +59,7 @@ truth.
 1. Extend `src/edgetpu_sys.rs` with real per-device path/type reporting
    (the `edgetpu_device` struct this baseline already declares but does
    not yet surface per-device), building real
-   `magnetar_runtime::device::DeviceDescriptor` values from it.
+   `magnetar_core::device::DeviceDescriptor` values from it.
 2. Design how Edge TPU's ahead-of-time-compiled execution model (via the
    separate Edge TPU Compiler toolchain, not a runtime kernel-source
    compilation API like CUDA/HIP/Level Zero) fits Magnetar's
@@ -86,6 +86,10 @@ never the reverse -- `magnetar-runtime` has zero compile-time dependency
 on this crate (the same externalization invariant every Provider/Component/
 Format module in this workspace observes). It is pinned into the main
 Magnetar repository as a git submodule at `providers/tpu`.
+
+This crate depends on `magnetar-provider-api` (the Provider contract) and
+`magnetar-core`, not on `magnetar-runtime`: Runtime changes above those layers
+no longer reach its lockfile.
 
 ## Continuous integration
 
